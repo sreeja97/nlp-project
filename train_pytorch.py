@@ -19,6 +19,23 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from train_functions import load_hf
 import util as u
 
+task_in = 'IMDB' 
+#task_in = 'Twitter' 
+
+model_id_in = "albertbase" # "bertbase", 'bertlarge', "distbase", "robertabase", "robertalarge", "albertbase", "albertlarge"
+specs_all = ["original", "N_pro", "N_weat", "N_all", "mix_pro", "mix_weat", "mix_all"]
+
+specs_in = specs_all # [specs_all[6]]
+run_in = "ex_BS" #'ex_LR2'
+
+i=0
+# name_addition = "LR05" # None 
+name_additions = ["LR1", "LR05", "LR5"]
+learning_rates = [1e-5, 5e-6, 5e-5]
+
+lr= learning_rates[i]
+na= name_additions[i]
+
 def train(task=task_in, model_id=model_id_in, spec=specs_in[0],
           epochs = 20, max_len = 512,     # 
           lr_in = 2e-5, eps_in = 1e-8,    # for adam optimizer

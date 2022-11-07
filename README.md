@@ -2,14 +2,28 @@
 
 ### set up
 clone repository and cd into bias-bert  
-install requirements.txt in your environment  
+install requirements.txt in your environment
+
+first upgrade your pip3 version
+pip3 install --upgrade pip
+
+pip3 install virtualenv
+virtualenv env
+source env/bin/activate
+
+then, install requirements by running below command
+pip3 install -r requirements.txt
+
+export PYTHONPATH="${PYTHONPATH}:/Users/sreejagovardhana/Documents/Fall 22/nlp/project/bias-bert"
 
 ### get and prepare data 
-`python res_data/IMDB_data_preparation_script.py | tee data_prep.txt`  
-`python cd res_data/twitter_data_preparation_script.py | tee data_prep.txt`  
+`python3 res_data/IMDB_data_preparation_script.py | tee data_prep.txt`  
+`python3 cd res_data/twitter_data_preparation_script.py | tee data_prep.txt`  
 
 ### train
-Train the models with train.py. The script is called with three variables, which are (1) the task (i.e. "IMDB" or "Twitter"), (2) the defined model_id of the pretrained model (find a list of all options below) and (3) the data specification(s) (spec) that are used to train the model(s). Each specification determines a different subset of test and training data and results in one model.  
+Train the models with train.py. The script is called with three variables, which are (1) the task (i.e. "IMDB" or "Twitter"), (2) the defined model_id of the pretrained model (find a list of all options below) and (3) the data specification(s) (spec) that are used to train the model(s). Each specification determines a different subset of test and training data and results in one model. 
+
+python3 train_pytorch.py "IMDB" "bertbase" "N_pro"
 
 `python train.py [task] [model_id] [spec]` is the structure of the command, wheere all three variables need to be strings. Here are some examples:  
   

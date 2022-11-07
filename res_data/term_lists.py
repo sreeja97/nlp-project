@@ -1,4 +1,5 @@
 from itertools import chain
+import pickle
 
 # Import predefined term lists
 def imp_terms(path):
