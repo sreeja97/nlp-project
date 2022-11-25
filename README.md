@@ -7,17 +7,18 @@ clone repository and cd into bias-bert
 ml purge
           
         
-# As Pytorch comes with CUDA libraries, we don't need to load CUDA modules.
-# the following two modules are sufficient for PyTorch
-# ml GCCcore/10.2.0 Python/3.8.6
+As Pytorch comes with CUDA libraries, we don't need to load CUDA modules.the following two modules are sufficient for PyTorch
+ml GCCcore/10.2.0 Python/3.8.6
         
-# you can save your module list with (dl is an arbitrary name)
+you can save your module list with (dl is an arbitrary name)
 module save nlp
       
-# next time when you login you can simply run
+next time when you login you can simply run
 module restore nlp
+
+### venv
     
-# create a virtual environment (the name dlvenv is arbitrary)
+create a virtual environment (the name dlvenv is arbitrary)
 cd $SCRATCH (wherever your proj is)
 
 first upgrade your pip3 version
