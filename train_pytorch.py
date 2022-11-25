@@ -37,7 +37,7 @@ lr= learning_rates[i]
 na= name_additions[i]
 
 def train(task=task_in, model_id=model_id_in, spec=specs_in[0],
-          epochs = 20, max_len = 512,     # 
+          epochs = 4, max_len = 512,     # 
           lr_in = 2e-5, eps_in = 1e-8,    # for adam optimizer
           h_droo = 0.5, a_droo = 0.2,     # droppouts: hidden and attention 
           batch_s = 32, # 16, 8, 
@@ -78,11 +78,12 @@ def train(task=task_in, model_id=model_id_in, spec=specs_in[0],
     tokenizer, model = u.load_hf(model_id, h_droo)  # configuration=configuration)
 
     print("MODEL DOT CUDA")
-    model.cuda()
+    model.cuda().half()
     
     # +++++++++++++++++++++++++++++++++++++
     #           Data Preprocessing
     # +++++++++++++++++++++++++++++++++++++
+
     train_sentences, train_labels = u.import_data('train', task, spec)
     
     input_ids = []
@@ -421,7 +422,7 @@ def train(task=task_in, model_id=model_id_in, spec=specs_in[0],
     print("Total training took {:} (h:mm:ss)".format(u.format_time(time.time()-total_t0)))
 
     # Display floats with two decimal places.
-    pd.set_option('precision', 2)
+    pd.set_option("display.precision", 2)
 
     df_stats = pd.DataFrame(data=training_stats)
     df_stats = df_stats.set_index('epoch')
@@ -492,10 +493,10 @@ na= name_additions[i]
 #####
 assert(task_in in ['IMDB', 'Twitter']), 'task name is not valid'
 assert(model_id_in in ["bertbase", 'bertlarge', "distbase", "distlarge", "robertabase", "robertalarge", "albertbase", "albertlarge"]), model_id_in + ' is not a valid model_id'
-#print('called train.py {} {} {}'.format(task_in, model_id_in, specs_in))
+print('called train.py {} {} {}'.format(task_in, model_id_in, specs_in))
 #####    
 
-#for (lr, na) in zip(learning_rates, name_additions):
-#for spec in specs_in:
-#    train(task=task_in, spec=spec, lr_in=lr, name_addition=na)
+for (lr, na) in zip(learning_rates, name_additions):
+    for spec in specs_in:
+        train(task=task_in, model_id=model_id_in, spec=spec, lr_in=lr, name_addition=na)
 

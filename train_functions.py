@@ -281,7 +281,7 @@ def train(task, model_id, spec, tokenizer=None, model=None, eval_steps_=500, per
 
     # Train pre-trained model
     trainer.train()
-
+    
 
 def calc_acc(spec, tokenizer, model_id, task="foo",  restricted_test_set = False):
     # ----- Load trained model -----#   

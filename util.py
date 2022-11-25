@@ -246,6 +246,6 @@ def load_albert(model_id="albert-base-v2", load_model=True, load_tokenizer=True 
     tokenizer = AlbertTokenizer.from_pretrained(model_id)
     model = AlbertForSequenceClassification.from_pretrained(model_id, config=configuration)
     
-    return tokenizert, model
+    return tokenizer, model
 
 
